@@ -40,7 +40,19 @@ async function getPlayers() {
             players {
                 name
                 jerseyNumber
-                
+                gender
+                team {
+                    name
+                }
+                height
+                pronounced
+                pronouns
+                facts {
+                    question{
+                        title
+                    }
+                    answer
+                }
             }
         }
     `
@@ -50,10 +62,15 @@ async function getPlayers() {
     return data
 }
 
-getPlayers().catch((error) => { console.error(error) })
+// getPlayers().catch((error) => { console.error(error) })
 
 // Routes
 server.get("/", async (req, res) => {
+    res.render("index")
+})
+
+
+server.get("/players", async (req, res) => {
 
     const data = await getPlayers()
 
