@@ -32,7 +32,9 @@ server.get("/", async (req, res) => {
 
 // Players route
 server.get("/players", async (req, res) => {
-    const data = await getPlayers()
+    console.log(req.query.id)
+
+    const data = await getPlayers(req)
 
     res.json(data)
 })

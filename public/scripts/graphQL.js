@@ -19,12 +19,15 @@ export const client = new GraphQLClient(process.env.HIGH_PERFORMANCE_API, {
 /* ------------------------------ Player query ------------------------------ */
 
 // Get all players
-export async function getPlayers() {
+export async function getPlayers(req) {
+
+    const name = req.query.name || "Tristan"
 
     // GraphQL Query
     const query = gql`
         {
-            players {
+            players(where: {name: "${name}"}) {
+                id
                 name
                 jerseyNumber
                 gender
