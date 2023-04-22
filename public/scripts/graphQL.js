@@ -21,12 +21,12 @@ export const client = new GraphQLClient(process.env.HIGH_PERFORMANCE_API, {
 // Get all players
 export async function getPlayers(req) {
 
-    const name = req.query.name || "Tristan"
+    const name = req.query.name || ""
 
     // GraphQL Query
     const query = gql`
         {
-            players(where: {name: "${name}"}) {
+            players(where: {name_contains: "${name}"}) {
                 id
                 name
                 jerseyNumber
@@ -55,11 +55,14 @@ export async function getPlayers(req) {
 /* ------------------------------- Team query ------------------------------- */
 
 // Get all teams
-export async function getTeams() {
+export async function getTeams(req) {
+
+    const name = req.query.name || ""
+
     // GraphQL Query
     const query = gql`
         {
-            teams {
+            teams(where: {name_contains: "${name}"}) {
                 name
                 country
                 seeding
@@ -92,16 +95,32 @@ export async function getTeams() {
 /* ----------------------------- Question query ----------------------------- */
 
 // Get all questions
-export async function getQuestions() {
-    // GraphQL Query
-    const query = gql`
-        {
-            questions {
-                title
-                type
+export async function getQuestions(req) {
+
+    const type = req.query.type
+
+    let query
+
+    // Check if type is defined
+    if (!type) {
+        query = gql`
+            {
+                questions{
+                    title
+                    type
+                }
             }
-        }
-    `
+        `
+    } else {
+        query = gql`
+            {
+                questions(where: {type: ${type}}) {
+                    title
+                    type
+                }
+            }
+        `
+    }
 
     // GraphQL Request
     const data = await client.request(query)

@@ -6,13 +6,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UltiTV-api</title>
 </head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body{
+        /* background-color: #494949; */
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #000000;
+    }
+
+    .main{
+        padding: 3em;
+        margin: 2em;
+        background-color: rgb(195, 195, 195);
+        border-radius: 0.5em;
+    }
+
+    h1{
+        margin-bottom: 1em;
+    }
+
+    h2{
+        font-size: 1.2em;
+        margin-bottom: 0.3em;
+    }
+
+    .links {
+        display: flex;
+        flex-direction: column;
+        column-gap: 1em;
+    }
+
+    .link {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 0.3em;
+    }
+
+    .link a{
+        color: black;
+        font-weight: 500;
+    }
+</style>
+
 <body>
 
-    <p>Hier is niks te vinden, probeer een van de volgende links:</p> 
+    <section class="main">
+        <h1>Hier is niks te vinden, probeer een van de volgende links:</h1> 
 
-    <a href="/players">Alle spelers</a>
-    <a href="/teams">Alle teams</a>
-    <a href="/questions">Alle questions</a>
+        <div class="links">
+            <h2>Spelers</h2>
+            <div class="link">
+                <p>Alle spelers opvragen -</p> 
+                <a href="/players">/players</a>
+            </div>
+    
+            <div class="link">
+                <p>Zoek speler op naam -</p> 
+                <a href="/players?name=Tristan">/players?name=Tristan</a>
+            </div>
+
+            <br>
+
+            <h2>Teams</h2>
+            <div class="link">
+                <p>Alle teams opvragen -</p> 
+                <a href="/teams">/teams</a>
+            </div>
+
+            <div class="link">
+                <p>Zoek team op naam -</p> 
+                <a href="/teams?name=Leeuwen">/teams?name=Leeuwen</a>
+            </div>
+
+            <br>
+            
+            <h2>Questions</h2>
+            <div class="link">
+                <p>Alle questions opvragen -</p> 
+                <a href="/questions">/questions</a>
+            </div>
+
+            <div class="link">
+                <p>Zoek question op type -</p> 
+                <a href="/questions?type=Player">/questions?type=Player</a>
+            </div>
+        </div>
+    </section>
     
 </body>
 </html>

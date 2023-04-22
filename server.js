@@ -32,7 +32,7 @@ server.get("/", async (req, res) => {
 
 // Players route
 server.get("/players", async (req, res) => {
-    console.log(req.query.id)
+    console.log(req.query)
 
     const data = await getPlayers(req)
 
@@ -41,14 +41,14 @@ server.get("/players", async (req, res) => {
 
 // Teams route
 server.get("/teams", async (req, res) => {
-    const data = await getTeams()
+    const data = await getTeams(req)
     
     res.json(data)
 })
 
 // Questions route
 server.get("/questions", async (req, res) => {
-    const data = await getQuestions()
+    const data = await getQuestions(req)
 
     res.json(data)
 })
