@@ -1,7 +1,7 @@
 import express, { Router } from "express"
 import bodyParser from "body-parser"
 import fs from "fs"
-import { getPlayers, getQuestions, getTeams } from './public/scripts/graphQL.js'
+import { getPlayers, getQuestions, getTeams, getGame } from './public/scripts/graphQL.js'
 
 /* -------------------------------------------------------------------------- */
 /*                               Server settings                              */
@@ -50,5 +50,15 @@ server.get("/teams", async (req, res) => {
 server.get("/questions", async (req, res) => {
     const data = await getQuestions(req)
 
+    res.json(data)
+})
+
+// Game route
+server.get("/game/:gameId", async (req, res) => {
+    const gameId = req.params.gameId
+
+    console.log(gameId)
+
+    const data = await getGame(gameId)
     res.json(data)
 })

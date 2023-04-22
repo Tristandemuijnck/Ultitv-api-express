@@ -126,3 +126,32 @@ export async function getQuestions(req) {
     const data = await client.request(query)
     return data
 }
+
+/* ------------------------------- Game query ------------------------------- */
+
+// Get game by id
+export async function getGame(gameId) {
+
+    // GraphQL Query
+    const query = gql`
+        {
+            games(where: {gameId: ${gameId}}) {
+                gameId
+                field
+                broadcaster
+                division
+                gameStatus
+                team1 {
+                    name
+                }
+                team2 {
+                    name
+                }
+            }
+        }
+    `
+
+    // GraphQL Request
+    const data = await client.request(query)
+    return data
+}
