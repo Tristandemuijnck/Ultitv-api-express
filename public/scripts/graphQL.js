@@ -130,27 +130,50 @@ export async function getQuestions(req) {
 /* ------------------------------- Game query ------------------------------- */
 
 // Get game by id
-export async function getGame(gameId) {
+export async function getGame(req) {
 
-    // GraphQL Query
-    const query = gql`
-        {
-            games(where: {gameId: ${gameId}}) {
-                gameId
-                field
-                broadcaster
-                division
-                gameStatus
-                team1 {
-                    name
-                }
-                team2 {
-                    name
+    const gameId = req.query.gameid
+
+    let query
+
+    if (!gameId) {
+        query = gql`
+            {
+                games{
+                    gameId
+                    field
+                    broadcaster
+                    division
+                    gameStatus
+                    team1 {
+                        name
+                    }
+                    team2 {
+                        name
+                    }
                 }
             }
-        }
-    `
-
+        `
+    } else{
+        query = gql`
+            {
+                games(where: {gameId: ${gameId}}) {
+                    gameId
+                    field
+                    broadcaster
+                    division
+                    gameStatus
+                    team1 {
+                        name
+                    }
+                    team2 {
+                        name
+                    }
+                }
+            }
+        `
+    }
+    
     // GraphQL Request
     const data = await client.request(query)
     return data

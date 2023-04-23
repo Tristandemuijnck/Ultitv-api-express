@@ -32,33 +32,24 @@ server.get("/", async (req, res) => {
 
 // Players route
 server.get("/players", async (req, res) => {
-    console.log(req.query)
-
     const data = await getPlayers(req)
-
     res.json(data)
 })
 
 // Teams route
 server.get("/teams", async (req, res) => {
     const data = await getTeams(req)
-    
     res.json(data)
 })
 
 // Questions route
 server.get("/questions", async (req, res) => {
     const data = await getQuestions(req)
-
     res.json(data)
 })
 
 // Game route
-server.get("/game/:gameId", async (req, res) => {
-    const gameId = req.params.gameId
-
-    console.log(gameId)
-
-    const data = await getGame(gameId)
+server.get("/games", async (req, res) => {
+    const data = await getGame(req)
     res.json(data)
 })
