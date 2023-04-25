@@ -136,6 +136,7 @@ export async function getGame(req) {
 
     let query
 
+    // Check if game id is defined
     if (!gameId) {
         query = gql`
             {
@@ -147,9 +148,13 @@ export async function getGame(req) {
                     gameStatus
                     team1 {
                         name
+                        seeding
+                        country
                     }
                     team2 {
                         name
+                        seeding
+                        country
                     }
                 }
             }
@@ -165,9 +170,13 @@ export async function getGame(req) {
                     gameStatus
                     team1 {
                         name
+                        seeding
+                        country
                     }
                     team2 {
                         name
+                        seeding
+                        country
                     }
                 }
             }
