@@ -150,11 +150,15 @@ export async function getGame(req) {
                         name
                         seeding
                         country
+                        iso2
+                        iso3
                     }
                     team2 {
                         name
                         seeding
                         country
+                        iso2
+                        iso3
                     }
                 }
             }
@@ -172,11 +176,15 @@ export async function getGame(req) {
                         name
                         seeding
                         country
+                        iso2
+                        iso3
                     }
                     team2 {
                         name
                         seeding
                         country
+                        iso2
+                        iso3
                     }
                 }
             }
